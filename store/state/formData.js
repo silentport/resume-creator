@@ -1,11 +1,12 @@
 export default {
     basic: {
         legend: '基础信息',
-        id: '1',
+        id: 'basic',
         list: [{
-                id: '1-1',
+                id: '1',
                 name: 'name',
                 label: '姓名',
+                value: '',
                 placeholder: 'user',
                 iconType: 'user',
                 rules: [{
@@ -14,9 +15,10 @@ export default {
                 }],
 
             }, {
-                id: '1-2',
+                id: '2',
                 name: 'age',
                 label: '年龄',
+                value: '',
                 placeholder: 'Age',
                 iconType: 'smile',
                 rules: [{
@@ -25,9 +27,10 @@ export default {
                 }],
 
             }, {
-                id: '1-3',
+                id: '3',
                 name: 'email',
                 label: '邮箱',
+                value: '',
                 placeholder: 'Email',
                 iconType: 'mail',
                 rules: [{
@@ -37,9 +40,10 @@ export default {
 
             },
             {
-                id: '1-4',
+                id: '4',
                 name: 'phone',
                 label: '电话',
+                value: '',
                 placeholder: 'Phone',
                 iconType: 'phone',
                 rules: [{
@@ -49,9 +53,10 @@ export default {
 
             },
             {
-                id: '1-5',
+                id: '5',
                 name: 'avator',
                 label: '照片',
+                value: '',
                 placeholder: 'photo',
                 iconType: 'phone',
                 type: 'upload',
@@ -66,64 +71,82 @@ export default {
 
     education: [{
         legend: '教育经历-1',
-        id: '2',
+        id: '1',
         list: [{
-            id: '2-1',
-            name: 'school',
-            label: '学校',
-            placeholder: 'school',
-            type: 'cascade',
-            iconType: 'user',
-            rules: [{
-                required: true,
-                message: 'Please input your school!',
-            }],
-            options: [{
-                value: 'zhejiang',
-                label: 'Zhejiang',
-                children: [{
-                    value: 'hangzhou',
-                    label: 'Hangzhou',
+                id: '1',
+                name: 'school-1',
+                label: '学校',
+                value: '',
+                placeholder: 'school',
+                type: 'cascade',
+                iconType: 'user',
+                rules: [{
+                    required: true,
+                    message: 'Please input your school!',
+                }],
+                options: [{
+                    value: 'zhejiang',
+                    label: 'Zhejiang',
                     children: [{
-                        value: 'xihu',
-                        label: 'West Lake',
+                        value: 'hangzhou',
+                        label: 'Hangzhou',
+                        children: [{
+                            value: 'xihu',
+                            label: 'West Lake',
+                        }],
                     }],
+                }, {
+                    value: 'jiangsu',
+                    label: 'Jiangsu',
+                    children: [{
+                        value: 'nanjing',
+                        label: 'Nanjing',
+                        children: [{
+                            value: 'zhonghuamen',
+                            label: 'Zhong Hua Men',
+                        }],
+                    }],
+                }]
+
+            }, {
+                id: '2',
+                name: 'major-1',
+                label: '专业',
+                value: '',
+                placeholder: 'major',
+                iconType: 'smile',
+                rules: [{
+                    required: true,
+                    message: 'Please input your major!',
+                }],
+            },
+            {
+                id: '3',
+                name: 'time-1',
+                label: '起止时间',
+                value: '',
+                type: 'datepicker',
+                placeholder: 'duration',
+                iconType: 'smile',
+                rules: [{
+                    required: true,
+                    message: 'Please input your duration!',
                 }],
             }, {
-                value: 'jiangsu',
-                label: 'Jiangsu',
-                children: [{
-                    value: 'nanjing',
-                    label: 'Nanjing',
-                    children: [{
-                        value: 'zhonghuamen',
-                        label: 'Zhong Hua Men',
-                    }],
+                id: '4',
+                name: 'degree-1',
+                label: '学历',
+                default: 'master',
+                value: 'master',
+                type: 'select',
+                placeholder: 'degree',
+                iconType: 'mail',
+                rules: [{
+                    required: true,
+                    message: 'Please input your degree!',
                 }],
-            }]
 
-        }, {
-            id: '2-2',
-            name: 'major',
-            label: '专业',
-            placeholder: 'major',
-            iconType: 'smile',
-            rules: [{
-                required: true,
-                message: 'Please input your major!',
-            }],
-        }, {
-            id: '2-3',
-            name: 'degree',
-            label: '学历',
-            type: 'select',
-            placeholder: 'degree',
-            iconType: 'mail',
-            rules: [{
-                required: true,
-                message: 'Please input your degree!',
-            }],
-
-        }]
+            }
+        ]
     }]
 }

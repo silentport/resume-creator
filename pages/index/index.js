@@ -1,7 +1,14 @@
 import {connect} from 'react-redux';
-import Form from '../../components/Form';
-import {addEducation} from '../../store/action';
-const Index = ({basic, education, onAdd}) => (
+import Form from '../../components/Form/index';
+import * as actions from './actions';
+const Index = ({
+  basic,
+  education,
+  onAdd,
+  onRemove,
+  onSetEduValue,
+  onSetBasicValue,
+}) => (
   <div>
     <div
       style={{
@@ -11,6 +18,9 @@ const Index = ({basic, education, onAdd}) => (
       <Form
         data={{basic, education}}
         addEducation={onAdd}
+        removeEducation={onRemove}
+        setEduValue={onSetEduValue}
+        setBasicValue={onSetBasicValue}
         style={{
           display: 'inline',
         }}
@@ -22,7 +32,10 @@ Index.getInitialProps = ({store}) => {};
 const mapStateToProps = ({basic, education}) => ({basic, education});
 const mapDispatchToProps = dispatch => {
   return {
-    onAdd: text => dispatch (addEducation (text)),
+    onAdd: () => dispatch (actions.addEducation ()),
+    onRemove: id => dispatch (actions.removeEducation (id)),
+    onSetEduValue: payload => dispatch (actions.setEducationValue (payload)),
+    onSetBasicValue: payload => dispatch (actions.setBasicValue (payload)),
   };
 };
 

@@ -1,3 +1,3 @@
 export default () => {
-  return <h1>88</h1>;
+  return <h1>other</h1>;
 };
