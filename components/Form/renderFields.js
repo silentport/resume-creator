@@ -10,6 +10,7 @@ import {
 } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
+const {TextArea} = Input;
 const {RangePicker} = DatePicker;
 
 const formItemLayout = {
@@ -52,22 +53,23 @@ export default ({list, id}, getFieldDecorator) => {
           <FormItem key={item.id} label={item.label} {...formItemLayout}>
             {getFieldDecorator (item.name, {
               rules: item.rules,
-              initialValue: 'master',
             }) (
-              <Select
-                style={{width: 200}}
-                placeholder="Select a person"
-                optionFilterProp="children"
-                onChange={() => {}}
-                onFocus={() => {}}
-                onBlur={() => {}}
-              >
+              <Select style={{width: 'calc(100% - 120px)'}}>
                 <Option value="junior">大专</Option>
                 <Option value="bachelor">本科</Option>
                 <Option value="master">硕士</Option>
                 <Option value="doctor">博士</Option>
               </Select>
             )}
+          </FormItem>
+        );
+      case 'area':
+        return (
+          <FormItem key={item.id} label={item.label} {...formItemLayout}>
+            {getFieldDecorator (item.name, {
+              rules: item.rules,
+              initialValue: 'master',
+            }) (<TextArea cols={100} rows={4}  placeholder={item.placeholder}/>)}
           </FormItem>
         );
       case 'datepicker':
@@ -80,7 +82,7 @@ export default ({list, id}, getFieldDecorator) => {
                   type: 'array',
                 },
               ],
-            }) (<RangePicker style={{width: '410px'}} />)}
+            }) (<RangePicker style={{width: 'calc(100% - 120px)'}} />)}
           </FormItem>
         );
       case 'cascade':
@@ -90,7 +92,7 @@ export default ({list, id}, getFieldDecorator) => {
               rules: item.rules,
             }) (
               <Cascader
-                style={{width: '410px'}}
+                style={{width: 'calc(100% - 120px)'}}
                 options={item.options}
                 placeholder="Select Address"
               />
@@ -104,7 +106,7 @@ export default ({list, id}, getFieldDecorator) => {
               rules: item.rules,
             }) (
               <Input
-                style={{width: '410px'}}
+                style={{width: '100%'}}
                 prefix={
                   <Icon
                     type={item.iconType}

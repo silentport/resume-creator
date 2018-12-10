@@ -14,7 +14,8 @@ export default class MyDocument extends Document {
             {`
             body {
               margin: 0px;
-              padding: 50px;
+              padding: 0px;
+              overflow: hidden;
             },
           `}
           </style>
