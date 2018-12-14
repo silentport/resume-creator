@@ -2,7 +2,7 @@ import Form from '../../components/Form/index';
 export default props => {
   return (
     <>
-      {props.selected.includes('Basic') && (
+      {props.selected.includes('basic') && (
         <Form
           tag="Basic"
           data={props.basic}
@@ -12,7 +12,7 @@ export default props => {
           }}
         />
       )}
-      {props.selected.includes('Education') && (
+      {props.selected.includes('education') && (
         <Form
           tag="Education"
           data={props.education}
@@ -24,7 +24,7 @@ export default props => {
           }}
         />
       )}
-      {props.selected.includes('Intern') && (
+      {props.selected.includes('intern') && (
         <Form
           tag="Intern"
           data={props.intern}
@@ -36,7 +36,7 @@ export default props => {
           }}
         />
       )}
-      {props.selected.includes('Job') && (
+      {props.selected.includes('job') && (
         <Form
           tag="Job"
           data={props.job}
@@ -48,7 +48,7 @@ export default props => {
           }}
         />
       )}
-      {props.selected.includes('Skill') && (
+      {props.selected.includes('skill') && (
         <Form
           tag="Skill"
           data={props.skill}
@@ -60,7 +60,7 @@ export default props => {
           }}
         />
       )}
-      {props.selected.includes('Award') && (
+      {props.selected.includes('award') && (
         <Form
           tag="Award"
           data={props.award}
@@ -72,7 +72,7 @@ export default props => {
           }}
         />
       )}
-      {props.selected.includes('Comment') && (
+      {props.selected.includes('comment') && (
         <Form
           tag="Comment"
           data={props.comment}

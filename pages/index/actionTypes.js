@@ -21,3 +21,5 @@ export const REMOVE_AWARD = 'remove award';
 export const SET_AWARD_VALUE = 'set award value';
 
 export const SET_COMMENT_VALUE = 'set comment value';
+
+export const CHANGE_SELECTED = 'change necessary items';

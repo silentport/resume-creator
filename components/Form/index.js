@@ -1,3 +1,4 @@
+import {connect} from 'react-redux';
 import {
   Form,
   Icon,
@@ -97,6 +98,7 @@ const options = {
           });
         });
     }
+
     if (getType(data) === 'array') {
       data.forEach(every => {
         every.list &&
@@ -111,6 +113,7 @@ const options = {
 
     return res;
   },
+
   onValuesChange: (data, newChangeValue, allValue) => {
     data.setValue && data.setValue(newChangeValue);
   },
@@ -118,3 +121,4 @@ const options = {
 const WrappedNormalForm = Form.create(options)(NormalForm);
 
 export default WrappedNormalForm;
+

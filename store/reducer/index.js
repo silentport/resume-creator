@@ -6,6 +6,7 @@ import {
   skillReducer,
   awardReducer,
   commentReducer,
+  selectedReducer,
 } from '../../pages/index/reducer/index';
 import {combineReducers} from 'redux';
 
@@ -17,5 +18,6 @@ const reducer = combineReducers ({
   skill: skillReducer,
   award: awardReducer,
   comment: commentReducer,
+  selected: selectedReducer,
 });
 export default reducer;

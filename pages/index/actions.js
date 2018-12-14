@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 
+
 // 基本信息
 export const setBasicValue = payload => ({
   type: types.SET_BASIC_VALUE,
@@ -79,5 +80,12 @@ export const setAwardValue = payload => ({
 // 自我评价
 export const setCommentValue = payload => ({
   type: types.SET_COMMENT_VALUE,
+  payload,
+});
+
+
+// 改变简历需要的元素列表
+export const changeSelected = payload => ({
+  type: types.CHANGE_SELECTED,
   payload,
 });

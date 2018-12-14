@@ -5,3 +5,4 @@ export {jobReducer} from './job';
 export {skillReducer} from './skill';
 export {commentReducer} from './comment';
 export {awardReducer} from './award';
+export {selectedReducer} from './selected';

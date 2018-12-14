@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "export": "next build && next export",
+    "start": "set NODE_ENV=production && node server.js"
   },
   "author": "LIYONGLONG",
   "license": "ISC",
@@ -15,7 +16,9 @@
     "@zeit/next-css": "^1.0.1",
     "antd": "^3.11.0",
     "babel-plugin-import": "^1.11.0",
+    "es6-promise": "^4.2.5",
     "html-pdf": "^2.2.0",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
     "next": "^7.0.2",
     "next-redux-wrapper": "^2.1.0",

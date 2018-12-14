@@ -1,0 +1,26 @@
+.item-container {}
+
+.item-container>.title {
+    color: #fff;
+    /* font-size: 17px; */
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    padding: 0px 5px;
+    box-sizing: border-box;
+    position: relative;
+    width: 74px;
+    background: rgb(20, 136, 212);
+    letter-spacing: 2px;
+    width: auto;
+}
+
+.item-container>.title:before {
+    content: '';
+    position: absolute;
+    border: 15px solid transparent;
+    border-left: 15px solid rgb(20, 136, 212);
+    top: 0px;
+    left: 74px;
+    /* background: #000; */
+}
