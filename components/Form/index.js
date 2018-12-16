@@ -115,6 +115,9 @@ const options = {
   },
 
   onValuesChange: (data, newChangeValue, allValue) => {
+    if (newChangeValue.avator) {
+      return;
+    }
     data.setValue && data.setValue(newChangeValue);
   },
 };

@@ -1,15 +1,20 @@
-.item-container {}
+.container {
+    padding: 20px;
+}
+.item-container {
+    position: relative;
+}
 
 .item-container>.title {
     color: #fff;
-    /* font-size: 17px; */
-    height: 30px;
-    line-height: 30px;
+    height: 26px;
+    line-height: 26px;
     display: inline-block;
     padding: 0px 5px;
     box-sizing: border-box;
     position: relative;
     width: 74px;
+    z-index: 1;
     background: rgb(20, 136, 212);
     letter-spacing: 2px;
     width: auto;
@@ -18,9 +23,25 @@
 .item-container>.title:before {
     content: '';
     position: absolute;
-    border: 15px solid transparent;
-    border-left: 15px solid rgb(20, 136, 212);
+    border: 13px solid transparent;
+    border-left: 13px solid rgb(20, 136, 212);
     top: 0px;
     left: 74px;
-    /* background: #000; */
+}
+.item-container:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    border: 1px solid transparent;
+    border-bottom: 1px dashed rgb(20, 136, 212);
+    top: 12px;
+    left: 0px;
+}
+.item-container > .detail{
+    display: flex;
+background: #555;
+}
+.item-container > .detail >.name {
+    width: 100px;
+
 }

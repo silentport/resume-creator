@@ -17,8 +17,10 @@ const formItemLayout = {
   labelCol: {span: 4},
   wrapperCol: {span: 8},
 };
-const normFile = e => {
-  console.log ('Upload event:', e);
+
+const normFile = (e) => {
+  
+  console.log ('Upload event:', e.fileList[0]);
   if (Array.isArray (e)) {
     return e;
   }
@@ -37,10 +39,10 @@ export default ({list, id}, getFieldDecorator) => {
             extra="请上传图片"
           >
             {getFieldDecorator (item.name, {
-              valuePropName: 'fileList',
+              valuePropName: 'avator',
               getValueFromEvent: normFile,
             }) (
-              <Upload name="logo" action="" listType="picture">
+              <Upload name="logo" action="http://localhost:3000/upload" listType="picture">
                 <Button>
                   <Icon type="upload" /> Click to upload
                 </Button>
