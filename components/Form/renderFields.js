@@ -18,16 +18,25 @@ const formItemLayout = {
   wrapperCol: {span: 8},
 };
 
-const normFile = (e) => {
-  
-  console.log ('Upload event:', e.fileList[0]);
-  if (Array.isArray (e)) {
-    return e;
-  }
-  return e && e.fileList;
+const normFile = (file, setAvator) => {
+  console.log ('Upload event:', file, setAvator);
+  const reader = new FileReader ();
+  reader.addEventListener (
+    'load',
+    function () {
+      console.log (reader.result);
+      setAvator ({avator: reader.result});
+    },
+    false
+  );
+  reader.readAsDataURL (file);
 };
 
-export default ({list, id}, getFieldDecorator) => {
+const remove = (file, setAvator) => {
+  setAvator ({avator: ''});
+};
+
+export default ({list, id}, getFieldDecorator, setValue) => {
   return list.map (item => {
     switch (item.type) {
       case 'upload':
@@ -40,9 +49,18 @@ export default ({list, id}, getFieldDecorator) => {
           >
             {getFieldDecorator (item.name, {
               valuePropName: 'avator',
-              getValueFromEvent: normFile,
             }) (
-              <Upload name="logo" action="http://localhost:3000/upload" listType="picture">
+              <Upload
+                name="logo"
+                action="http://localhost:3000/upload"
+                listType="picture"
+                beforeUpload={file => {
+                  normFile (file, setValue);
+                }}
+                onRemove={file => {
+                  remove (file, setValue);
+                }}
+              >
                 <Button>
                   <Icon type="upload" /> Click to upload
                 </Button>
@@ -71,7 +89,9 @@ export default ({list, id}, getFieldDecorator) => {
             {getFieldDecorator (item.name, {
               rules: item.rules,
               initialValue: 'master',
-            }) (<TextArea cols={100} rows={4}  placeholder={item.placeholder}/>)}
+            }) (
+              <TextArea cols={100} rows={4} placeholder={item.placeholder} />
+            )}
           </FormItem>
         );
       case 'datepicker':

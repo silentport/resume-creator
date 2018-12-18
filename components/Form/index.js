@@ -63,17 +63,18 @@ class NormalForm extends React.PureComponent {
     );
   };
 
-  renderSingle = (data, getFieldDecorator) => {
+  renderSingle = (data, getFieldDecorator, setValue) => {
     return (
       <fieldset key={data.id}>
         <legend>{data.legend}</legend>
-        {renderFields(data, getFieldDecorator)}
+        {renderFields(data, getFieldDecorator, setValue)}
       </fieldset>
     );
   };
 
   render() {
     const {
+      setValue,
       data,
       form: {getFieldDecorator, getFieldValue},
     } = this.props;
@@ -81,7 +82,7 @@ class NormalForm extends React.PureComponent {
       <Form onSubmit={this.handleSubmit}>
         {data.concat
           ? this.renderList(data, getFieldDecorator)
-          : this.renderSingle(data, getFieldDecorator)}
+          : this.renderSingle(data, getFieldDecorator, setValue)}
       </Form>
     );
   }
@@ -124,4 +125,3 @@ const options = {
 const WrappedNormalForm = Form.create(options)(NormalForm);
 
 export default WrappedNormalForm;
-

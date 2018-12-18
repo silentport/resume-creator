@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
 import React from 'react';
-import Form from '../../components/Form/index';
 import FormList from './formList';
 import {Checkbox, Button} from 'antd';
 const CheckboxGroup = Checkbox.Group;
@@ -58,8 +57,9 @@ class Index extends React.Component {
             defaultValue={this.props.selected}
             onChange={this.onChange}
           />
-          <Button type="primary" onClick={this.downLoad}>下载</Button>
-
+          <Button type="primary" onClick={this.downLoad}>
+            下载
+          </Button>
         </div>
         <div
           style={{
@@ -72,10 +72,17 @@ class Index extends React.Component {
           }}
         >
           <FormList {...this.props} selected={this.props.selected} />
-
         </div>
         <div
-          style={{flexGrow: 1, padding: 5, height: '100vh', background: '#ddd'}}
+          style={{
+            width: '50%',
+            overflowY: 'auto',
+            overflowX: 'hidden',
+            flexGrow: 1,
+            padding: 5,
+            height: '100vh',
+            background: '#ddd',
+          }}
         >
           <h3>预览界面</h3>
           <Preview />

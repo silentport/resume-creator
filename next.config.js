@@ -8,5 +8,8 @@ if (typeof require !== 'undefined') {
 console.log(withCss);
 
 module.exports = withCss({
+    webpack: (config, {}) => {
+        return config;
+    },
     distDir: '_next'
 });

@@ -78,7 +78,7 @@ export default {
                 label: '学校',
                 value: '',
                 placeholder: 'school',
-                type: 'cascade',
+                // type: 'cascade',
                 iconType: 'user',
                 rules: [{
                     required: true,
@@ -321,7 +321,7 @@ export default {
 
     comment: {
         legend: '自我评价',
-        id: 'basic',
+        id: 'comment',
         list: [{
             id: '1',
             name: 'introduce',
