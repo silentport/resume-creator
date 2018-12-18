@@ -26,11 +26,11 @@
 
 }
 
-.item-container>.work {
+.item-container .work {
     /* background: #eee; */
 }
 
-.item-container>.description {
+.item-container .description {
     margin-left: 20px;
     width: inherit;
     position: relative;
@@ -40,7 +40,7 @@
     /* max-width: 500px; */
 }
 
-.item-container>.description:before {
+.item-container .description:before {
     content: '';
     position: absolute;
     background: #000;
@@ -52,7 +52,7 @@
 
 }
 
-.item-container>.work>div {
+.item-container .work>div {
     display: inline-block;
     font-weight: 700;
     width: 33%;
