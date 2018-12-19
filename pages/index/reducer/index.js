@@ -1,8 +1,32 @@
-export {basicReducer} from './basic';
-export {educationReducer} from './education';
-export {internReducer} from './intern';
-export {jobReducer} from './job';
-export {skillReducer} from './skill';
-export {commentReducer} from './comment';
-export {awardReducer} from './award';
-export {selectedReducer} from './selected';
+export {
+  awardReducer
+}
+from './award';
+export {
+  basicReducer
+}
+from './basic';
+export {
+  commentReducer
+}
+from './comment';
+export {
+  educationReducer
+}
+from './education';
+export {
+  internReducer
+}
+from './intern';
+export {
+  jobReducer
+}
+from './job';
+export {
+  selectedReducer
+}
+from './selected';
+export {
+  skillReducer
+}
+from './skill';

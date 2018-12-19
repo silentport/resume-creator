@@ -104,7 +104,12 @@ export default ({list, id}, getFieldDecorator, setValue) => {
                   type: 'array',
                 },
               ],
-            }) (<RangePicker style={{width: 'calc(100% - 120px)'}} />)}
+            }) (
+              <RangePicker
+                format="YYYY-MM"
+                style={{width: 'calc(100% - 120px)'}}
+              />
+            )}
           </FormItem>
         );
       case 'cascade':

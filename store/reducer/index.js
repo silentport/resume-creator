@@ -8,9 +8,11 @@ import {
   commentReducer,
   selectedReducer,
 } from '../../pages/index/reducer/index';
-import {combineReducers} from 'redux';
+import {
+  combineReducers
+} from 'redux';
 
-const reducer = combineReducers ({
+const reducer = combineReducers({
   education: educationReducer,
   basic: basicReducer,
   intern: internReducer,

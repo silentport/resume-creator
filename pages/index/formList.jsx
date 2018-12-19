@@ -1,8 +1,8 @@
 import Form from '../../components/Form/index';
 export default props => {
   return (
-    <>
-      {props.selected.includes('basic') && (
+    <div>
+      {props.selected.includes ('basic') &&
         <Form
           tag="Basic"
           data={props.basic}
@@ -10,9 +10,8 @@ export default props => {
           style={{
             display: 'inline',
           }}
-        />
-      )}
-      {props.selected.includes('education') && (
+        />}
+      {props.selected.includes ('education') &&
         <Form
           tag="Education"
           data={props.education}
@@ -22,9 +21,8 @@ export default props => {
           style={{
             display: 'inline',
           }}
-        />
-      )}
-      {props.selected.includes('intern') && (
+        />}
+      {props.selected.includes ('intern') &&
         <Form
           tag="Intern"
           data={props.intern}
@@ -34,9 +32,8 @@ export default props => {
           style={{
             display: 'inline',
           }}
-        />
-      )}
-      {props.selected.includes('job') && (
+        />}
+      {props.selected.includes ('job') &&
         <Form
           tag="Job"
           data={props.job}
@@ -46,9 +43,8 @@ export default props => {
           style={{
             display: 'inline',
           }}
-        />
-      )}
-      {props.selected.includes('skill') && (
+        />}
+      {props.selected.includes ('skill') &&
         <Form
           tag="Skill"
           data={props.skill}
@@ -58,9 +54,8 @@ export default props => {
           style={{
             display: 'inline',
           }}
-        />
-      )}
-      {props.selected.includes('award') && (
+        />}
+      {props.selected.includes ('award') &&
         <Form
           tag="Award"
           data={props.award}
@@ -70,9 +65,8 @@ export default props => {
           style={{
             display: 'inline',
           }}
-        />
-      )}
-      {props.selected.includes('comment') && (
+        />}
+      {props.selected.includes ('comment') &&
         <Form
           tag="Comment"
           data={props.comment}
@@ -80,8 +74,7 @@ export default props => {
           style={{
             display: 'inline',
           }}
-        />
-      )}
-    </>
+        />}
+    </div>
   );
 };

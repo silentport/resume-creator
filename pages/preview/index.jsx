@@ -38,20 +38,24 @@ const Preview = props => {
                       <div className="title">
                         {current[0].legend.split ('-')[0]}
                       </div>
-                      {current.map ((item, index) => {
-                        return (
-                          <div key={index} className="education">
-                            {item.list.map ((i, idx) => {
-                              return (
-                                <div key={idx}>
-                                  {/* {i.label}: */}
-                                  {i.value && renderValue (i.label, i.value)}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        );
-                      })}
+                      <table className="education">
+                        <tbody>
+                          {current.map ((item, index) => {
+                            return (
+                              <tr key={index}>
+                                {item.list.map ((i, idx) => {
+                                  return (
+                                    <td key={idx}>
+                                      {i.value &&
+                                        renderValue (i.label, i.value)}
+                                    </td>
+                                  );
+                                })}
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
                     </div>
                   );
                 case '实习经历':
@@ -64,7 +68,6 @@ const Preview = props => {
                       {current.map ((item, index) => {
                         return (
                           <div key={index}>
-
                             <div className="work">
                               {item.list.map ((i, idx) => {
                                 return i.label !== '工作描述'
@@ -77,9 +80,15 @@ const Preview = props => {
                               })}
                             </div>
                             {item.list[3].value &&
-                              <div className="description">
-                                {item.list[3].value}
-                              </div>}
+                              item.list[3].value
+                                .split ('\n')
+                                .map ((item, idx) => {
+                                  return (
+                                    <div key={idx} className="description">
+                                      {item}
+                                    </div>
+                                  );
+                                })}
 
                           </div>
                         );
@@ -94,8 +103,13 @@ const Preview = props => {
                         {current[0].legend.split ('-')[0]}
                       </div>
                       {current.map ((item, index) => {
-                        return item.list[0].value
-                          ? <div key={index} className="description">
+                        return item.list[0].value && item.list[0].value
+                          ? <div
+                              key={index}
+                              className={
+                                current.length > 1 ? 'description' : 'null'
+                              }
+                            >
                               {item.list[0].value}
                             </div>
                           : null;

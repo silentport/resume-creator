@@ -27,17 +27,17 @@ const map = new Map([
         types.REMOVE_INTERN,
         (state, action) => {
             return state
-              .filter(item => item.id !== action.id)
-              .map((item, index) => ({
-                ...item,
-                legend: `实习经历-${index + 1}`,
-                id: `${index + 1}`,
-                list: item.list.map(i => ({
-                  ...i,
-                  name: `${i.name.split('-')[0]}-${index + 1}`
-                }))
-              }));
-          },
+                .filter(item => item.id !== action.id)
+                .map((item, index) => ({
+                    ...item,
+                    legend: `实习经历-${index + 1}`,
+                    id: `${index + 1}`,
+                    list: item.list.map(i => ({
+                        ...i,
+                        name: `${i.name.split('-')[0]}-${index + 1}`
+                    }))
+                }));
+        },
     ],
 
     [
@@ -45,17 +45,17 @@ const map = new Map([
         (state, action) => {
             const key = Object.keys(action.payload)[0];
             return state.map(item => {
-              return {
-                ...item,
-                list: item.list.map(item => {
-                  return {
+                return {
                     ...item,
-                    value: item.name === key ? action.payload[key] : item.value,
-                  };
-                }),
-              };
+                    list: item.list.map(item => {
+                        return {
+                            ...item,
+                            value: item.name === key ? action.payload[key] : item.value,
+                        };
+                    }),
+                };
             });
-          },
+        },
     ],
 ]);
 

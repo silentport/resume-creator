@@ -1,8 +1,10 @@
 import {connect} from 'react-redux';
 import React from 'react';
 import FormList from './formList';
-import {Checkbox, Button} from 'antd';
+import {Checkbox, Button, Radio} from 'antd';
 const CheckboxGroup = Checkbox.Group;
+const RadioGroup = Radio.Group;
+
 import * as actions from './actions';
 import Preview from '../preview';
 import fetch from 'isomorphic-fetch';
@@ -12,24 +14,33 @@ class Index extends React.Component {
   constructor (props) {
     super (props);
   }
+  state = {
+    type: 'pdf',
+  };
   options = [
-    'basic',
-    'education',
-    'intern',
-    'job',
-    'skill',
-    'award',
-    'comment',
+    ['basic', '基础信息'],
+    ['education', '教育经历'],
+    ['intern', '实习经历'],
+    ['job', '工作经历'],
+    ['skill', '个人技能'],
+    ['award', '获奖情况'],
+    ['comment', '自我评价'],
   ];
   url = `${config.host}:${config.port}/preview`;
 
   onChange = checkedValues => {
-    this.props.onChangeSelected (checkedValues);
+    this.props.onChangeSelected (
+      this.options
+        .filter (item => {
+          return checkedValues.includes (item[1]);
+        })
+        .map (item => item[0])
+    );
   };
   downLoad = async e => {
     const res = await fetch (this.url, {
       method: 'POST',
-      body: JSON.stringify (this.props),
+      body: JSON.stringify ({...this.props, type: this.state.type}),
     });
 
     const blob = await res.blob ();
@@ -37,8 +48,22 @@ class Index extends React.Component {
     const downloadHref = url.createObjectURL (blob);
     let downloadLink = document.createElement ('a');
     downloadLink.href = downloadHref;
-    downloadLink.download = 'resume.pdf';
+    if (this.state.type === 'pdf') {
+      downloadLink.download = 'resume.pdf';
+    }
+    if (this.state.type === 'html') {
+      downloadLink.download = 'resume.html';
+    }
+    if (this.state.type === 'picture') {
+      downloadLink.download = 'resume.png';
+    }
+
     downloadLink.click ();
+  };
+  onTypeChange = e => {
+    this.setState ({
+      type: e.target.value,
+    });
   };
   render () {
     return (
@@ -53,13 +78,33 @@ class Index extends React.Component {
         >
           <h3>选择简历中要描述的要素</h3>
           <CheckboxGroup
-            options={this.options}
-            defaultValue={this.props.selected}
+            options={this.options.map (item => item[1])}
+            defaultValue={this.options
+              .filter (item => {
+                return this.props.selected.includes (item[0]);
+              })
+              .map (item => item[1])}
             onChange={this.onChange}
           />
-          <Button type="primary" onClick={this.downLoad}>
-            下载
-          </Button>
+
+          <div style={{marginTop: '150px'}}>
+
+            选择下载的文件格式
+            <RadioGroup onChange={this.onTypeChange} value={this.state.type}>
+              <Radio value={'pdf'}>pdf</Radio>
+              <Radio value={'html'}>html</Radio>
+              <Radio value={'picture'}>图片</Radio>
+
+            </RadioGroup>
+
+            <br />
+            <br />
+            <Button type="primary" onClick={this.downLoad}>
+              下载到本地
+            </Button>
+
+          </div>
+
         </div>
         <div
           style={{
