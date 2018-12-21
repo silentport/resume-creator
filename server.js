@@ -9,6 +9,7 @@ const fs = require('fs')
 const staticHtmlFormatter = require('./staticHtmlFormatter');
 const pdf = require('html-pdf');
 const dev = process.env.NODE_ENV !== 'production'
+console.log('dev: ', dev)
 const app = next({
     dev
 })
@@ -23,7 +24,7 @@ app.prepare().then(() => {
         const {
             pathname
         } = parsedUrl
-
+        console.log("路径：", pathname);
         if (req.method === 'POST' && pathname === '/resume_creator/preview') {
             let buffer = [];
             req.on('data', chunk => {
