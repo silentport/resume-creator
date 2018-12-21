@@ -9,7 +9,7 @@ import * as actions from './actions';
 import Preview from '../preview';
 import fetch from 'isomorphic-fetch';
 import config from '../../config';
-
+import './index.css';
 class Index extends React.Component {
   constructor (props) {
     super (props);
@@ -26,7 +26,7 @@ class Index extends React.Component {
     ['award', '获奖情况'],
     ['comment', '自我评价'],
   ];
-  url = `${config.host}:${config.port}/preview`;
+  url = `${config.host}/resume_creator/preview`;
 
   onChange = checkedValues => {
     this.props.onChangeSelected (
@@ -38,9 +38,15 @@ class Index extends React.Component {
     );
   };
   downLoad = async e => {
+    const imgUrl = this.props.basic.list[4].value;
+    console.log (imgUrl);
     const res = await fetch (this.url, {
       method: 'POST',
-      body: JSON.stringify ({...this.props, type: this.state.type}),
+      body: JSON.stringify ({
+        ...this.props,
+        type: this.state.type,
+        imgUrl: imgUrl,
+      }),
     });
 
     const blob = await res.blob ();
@@ -68,14 +74,7 @@ class Index extends React.Component {
   render () {
     return (
       <div style={{display: 'flex'}}>
-        <div
-          style={{
-            width: '15%',
-            height: '100vh',
-            padding: 5,
-            background: '#eee',
-          }}
-        >
+        <div className="slider">
           <h3>选择简历中要描述的要素</h3>
           <CheckboxGroup
             options={this.options.map (item => item[1])}
@@ -86,49 +85,24 @@ class Index extends React.Component {
               .map (item => item[1])}
             onChange={this.onChange}
           />
-
-          <div style={{marginTop: '150px'}}>
-
+          <div className="ratio">
             选择下载的文件格式
-            <RadioGroup onChange={this.onTypeChange} value={this.state.type}>
-              <Radio value={'pdf'}>pdf</Radio>
-              <Radio value={'html'}>html</Radio>
-              <Radio value={'picture'}>图片</Radio>
-
-            </RadioGroup>
-
-            <br />
-            <br />
+            <div>
+              <RadioGroup onChange={this.onTypeChange} value={this.state.type}>
+                <Radio value={'pdf'}>pdf</Radio>
+                <Radio value={'html'}>html</Radio>
+              </RadioGroup>
+            </div>
             <Button type="primary" onClick={this.downLoad}>
               下载到本地
             </Button>
-
           </div>
-
         </div>
-        <div
-          style={{
-            width: '35%',
-            height: '100vh',
-            background: '#fff',
-            overflowY: 'auto',
-            overflowX: 'hidden',
-            padding: 5,
-          }}
-        >
+
+        <div className="form">
           <FormList {...this.props} selected={this.props.selected} />
         </div>
-        <div
-          style={{
-            width: '50%',
-            overflowY: 'auto',
-            overflowX: 'hidden',
-            flexGrow: 1,
-            padding: 5,
-            height: '100vh',
-            background: '#ddd',
-          }}
-        >
+        <div className="preview">
           <h3>预览界面</h3>
           <Preview />
         </div>

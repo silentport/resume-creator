@@ -58,7 +58,7 @@ class NormalForm extends React.PureComponent {
           <Button
             type="dashed"
             onClick={this.props.add}
-            style={{ width: '80%' }}>
+            style={{ width: '400px', background: '#eee' }}>
             <Icon type="plus" /> 新增一项
           </Button>
         </FormItem>

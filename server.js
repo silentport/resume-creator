@@ -23,23 +23,20 @@ app.prepare().then(() => {
         const {
             pathname
         } = parsedUrl
-
-        if (req.method === 'POST' && pathname === '/preview') {
+        if (req.method === 'POST' && pathname === '/resume_creator/preview') {
             let buffer = [];
             req.on('data', chunk => {
                 buffer.push(chunk);
             })
             req.on('end', () => {
                 buffer = JSON.parse(buffer.toString());
-
-                console.log(buffer.type);
                 app.renderToHTML(req, res, '/preview', buffer).then(data => {
 
                     if (buffer.type === 'pdf') {
+                        data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css', '100%');
                         const options = {
                             format: 'A4'
                         };
-                        data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css')
 
                         res.writeHead(200, {
                             "content-type": 'application/pdf; charset=utf-8'
@@ -47,46 +44,29 @@ app.prepare().then(() => {
                         pdf.create(data, options).toStream((err, stream) => {
                             !err && stream.pipe(res);
                         });
-                    }
 
+                    }
                     if (buffer.type === 'html') {
+                        data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css', '80%');
+                        data = data.replace(/\<img src="data:image\/(\w+);base64,([\s\S]+?)"/, (all, type, base64) => {
+                            const _base64 = Buffer.from(base64, 'base64').toString('base64')
+                            return `<img src="data:image/${type};base64,${_base64}" alt='照片'`
+                        })
+
                         res.writeHead(200, {
                             "content-type": 'text/html; charset=utf-8'
                         })
-                        res.end(staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css'))
-
-                    }
-                    if (buffer.type === 'picture') {
-                        res.writeHead(200, {
-                            "content-type": 'image/png; charset=utf-8'
-                        })
-                        const gm = require('gm').subClass({
-                            imageMagick: true
-                        });
-                        const options = {
-                            format: 'A4'
-                        };
-                        data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css')
-
-
-                        pdf.create(data, options).toStream((err, stream) => {
-                            gm(stream).command('convert').write('./a.png', (err) => {
-                                if (!err) {
-                                    console.log('success');
-                                } else {
-                                    throw err
-                                }
-                            })
-                        });
-
+                        res.write(Buffer.from(data))
+                        res.end();
                     }
                 })
             })
+
         } else {
             handle(req, res, parsedUrl)
         }
     }).listen(config.port, err => {
         if (err) throw err
-        console.log(`> Ready on ${config.host}:${config.port}`)
+        console.log(`> Ready on http://localhost:${config.port}`)
     })
 })

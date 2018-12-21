@@ -12,11 +12,27 @@ const Preview = props => {
   const renderValue = (label, value) => {
     switch (label) {
       case '起止时间':
-        return getDate (value[0]) + ' ~ ' + getDate (value[1]);
+        return (
+          getDate (value[0]).substring (0, 7) +
+          ' ~ ' +
+          getDate (value[1]).substring (0, 7)
+        );
       case '学历':
         return degree[value];
       default:
         return value;
+    }
+  };
+
+  const hasValue = data => {
+    if (data.concat) {
+      return data.some (item => {
+        return item.list.some (i => i.value !== '' && i.label !== '学历');
+      });
+    } else {
+      return data.list.some (item => {
+        return item.value !== '';
+      });
     }
   };
 
@@ -33,144 +49,144 @@ const Preview = props => {
             if (current.concat) {
               switch (current[0].legend.split ('-')[0]) {
                 case '教育经历':
-                  return (
-                    <div className="item-container" key={index}>
-                      <div className="title">
-                        {current[0].legend.split ('-')[0]}
+                  return hasValue (current)
+                    ? <div className="item-container" key={index}>
+                        <div className="title">
+                          {current[0].legend.split ('-')[0]}
+                        </div>
+                        <table className="education">
+                          <tbody>
+                            {current.map ((item, index) => {
+                              return (
+                                <tr key={index}>
+                                  {item.list.map ((i, idx) => {
+                                    return (
+                                      <td key={idx}>
+                                        {i.value &&
+                                          renderValue (i.label, i.value)}
+                                      </td>
+                                    );
+                                  })}
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
                       </div>
-                      <table className="education">
-                        <tbody>
-                          {current.map ((item, index) => {
-                            return (
-                              <tr key={index}>
-                                {item.list.map ((i, idx) => {
-                                  return (
-                                    <td key={idx}>
-                                      {i.value &&
-                                        renderValue (i.label, i.value)}
-                                    </td>
-                                  );
-                                })}
-                              </tr>
-                            );
-                          })}
-                        </tbody>
-                      </table>
-                    </div>
-                  );
+                    : null;
                 case '实习经历':
                 case '工作经历':
-                  return (
-                    <div className="item-container" key={index}>
-                      <div className="title">
-                        {current[0].legend.split ('-')[0]}
-                      </div>
-                      {current.map ((item, index) => {
-                        return (
-                          <div key={index}>
-                            <div className="work">
-                              {item.list.map ((i, idx) => {
-                                return i.label !== '工作描述'
-                                  ? <div key={idx}>
-                                      {/* {i.label}: */}
-                                      {i.value &&
-                                        renderValue (i.label, i.value)}
-                                    </div>
-                                  : null;
-                              })}
-                            </div>
-                            {item.list[3].value &&
-                              item.list[3].value
-                                .split ('\n')
-                                .map ((item, idx) => {
-                                  return (
-                                    <div key={idx} className="description">
-                                      {item}
-                                    </div>
-                                  );
+                  return hasValue (current)
+                    ? <div className="item-container" key={index}>
+                        <div className="title">
+                          {current[0].legend.split ('-')[0]}
+                        </div>
+                        {current.map ((item, index) => {
+                          return (
+                            <div key={index}>
+                              <div className="work">
+                                {item.list.map ((i, idx) => {
+                                  return i.label !== '工作描述'
+                                    ? <div key={idx}>
+                                        {/* {i.label}: */}
+                                        {i.value &&
+                                          renderValue (i.label, i.value)}
+                                      </div>
+                                    : null;
                                 })}
+                              </div>
+                              {item.list[3].value &&
+                                item.list[3].value
+                                  .split ('\n')
+                                  .map ((item, idx) => {
+                                    return (
+                                      <div key={idx} className="description">
+                                        {item}
+                                      </div>
+                                    );
+                                  })}
 
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
+                            </div>
+                          );
+                        })}
+                      </div>
+                    : null;
                 case '个人技能':
                 case '获奖情况':
-                  return (
-                    <div className="item-container" key={index}>
-                      <div className="title">
-                        {current[0].legend.split ('-')[0]}
+                  return hasValue (current)
+                    ? <div className="item-container" key={index}>
+                        <div className="title">
+                          {current[0].legend.split ('-')[0]}
+                        </div>
+                        {current.map ((item, index) => {
+                          return item.list[0].value && item.list[0].value
+                            ? <div
+                                key={index}
+                                className={
+                                  current.length > 1 ? 'description' : 'null'
+                                }
+                              >
+                                {item.list[0].value}
+                              </div>
+                            : null;
+                        })}
                       </div>
-                      {current.map ((item, index) => {
-                        return item.list[0].value && item.list[0].value
-                          ? <div
-                              key={index}
-                              className={
-                                current.length > 1 ? 'description' : 'null'
-                              }
-                            >
-                              {item.list[0].value}
-                            </div>
-                          : null;
-                      })}
-                    </div>
-                  );
+                    : null;
                 default:
                   return <h3 key={index}>无匹配项</h3>;
               }
             } else {
               switch (current.legend) {
                 case '基础信息':
-                  return (
-                    <div className="item-container" key={index}>
-                      <div className="title">{current.legend}</div>
-                      {isBasic && hasAvator
-                        ? <div className="basic-container">
-                            <div className="info">
+                  return hasValue (current)
+                    ? <div className="item-container" key={index}>
+                        <div className="title">{current.legend}</div>
+                        {isBasic && hasAvator
+                          ? <div className="basic-container">
+                              <div className="info">
+                                {current.list.map ((item, index) => {
+                                  return (
+                                    item.value &&
+                                    item.name !== 'avator' &&
+                                    <div key={index} className="name">
+                                      <div>
+                                        {item.label}: {item.value}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                              <div className="avator">
+                                <img src={current.list[4].value} alt="" />
+                              </div>
+                            </div>
+                          : <div
+                              className="detail"
+                              style={{
+                                width: '100%',
+                              }}
+                            >
                               {current.list.map ((item, index) => {
                                 return (
-                                  item.value &&
-                                  item.name !== 'avator' &&
                                   <div key={index} className="name">
-                                    <div>
-                                      {item.label}: {item.value}
-                                    </div>
+                                    {item.value &&
+                                      <div>
+                                        {/* {item.value} */}
+                                        {item.label}: {item.value}
+                                      </div>}
                                   </div>
                                 );
                               })}
-                            </div>
-                            <div className="avator">
-                              <img src={current.list[4].value} alt="" />
-                            </div>
-                          </div>
-                        : <div
-                            className="detail"
-                            style={{
-                              width: '100%',
-                            }}
-                          >
-                            {current.list.map ((item, index) => {
-                              return (
-                                <div key={index} className="name">
-                                  {item.value &&
-                                    <div>
-                                      {/* {item.value} */}
-                                      {item.label}: {item.value}
-                                    </div>}
-                                </div>
-                              );
-                            })}
-                          </div>}
-                    </div>
-                  );
+                            </div>}
+                      </div>
+                    : null;
                 default:
-                  return (
-                    <div className="item-container" key={index}>
-                      <div className="title">{current.legend}</div>
-                      <div className="comment">{current.list[0].value}</div>
-                    </div>
-                  );
+                  return hasValue (current)
+                    ? <div className="item-container" key={index}>
+                        <div className="title">{current.legend}</div>
+                        <div className="comment">{current.list[0].value}</div>
+                      </div>
+                    : null;
               }
             }
           })

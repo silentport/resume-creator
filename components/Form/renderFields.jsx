@@ -8,6 +8,7 @@ import {
   Cascader,
   DatePicker,
 } from 'antd';
+import config from '../../config';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const {TextArea} = Input;
@@ -24,7 +25,6 @@ const normFile = (file, setAvator) => {
   reader.addEventListener (
     'load',
     function () {
-      console.log (reader.result);
       setAvator ({avator: reader.result});
     },
     false
@@ -52,7 +52,7 @@ export default ({list, id}, getFieldDecorator, setValue) => {
             }) (
               <Upload
                 name="logo"
-                action="http://localhost:3000/upload"
+                // action={`${config.host}:${config.port}/upload`}
                 listType="picture"
                 beforeUpload={file => {
                   normFile (file, setValue);
@@ -74,7 +74,7 @@ export default ({list, id}, getFieldDecorator, setValue) => {
             {getFieldDecorator (item.name, {
               rules: item.rules,
             }) (
-              <Select style={{width: 'calc(100% - 120px)'}}>
+              <Select style={{width: '400px'}}>
                 <Option value="junior">大专</Option>
                 <Option value="bachelor">本科</Option>
                 <Option value="master">硕士</Option>
@@ -90,7 +90,11 @@ export default ({list, id}, getFieldDecorator, setValue) => {
               rules: item.rules,
               initialValue: 'master',
             }) (
-              <TextArea cols={100} rows={4} placeholder={item.placeholder} />
+              <TextArea
+                style={{width: '400px'}}
+                rows={4}
+                placeholder={item.placeholder}
+              />
             )}
           </FormItem>
         );
@@ -106,8 +110,9 @@ export default ({list, id}, getFieldDecorator, setValue) => {
               ],
             }) (
               <RangePicker
+                placeholder={['开始日期', '结束日期']}
                 format="YYYY-MM"
-                style={{width: 'calc(100% - 120px)'}}
+                style={{width: '400px'}}
               />
             )}
           </FormItem>
@@ -133,7 +138,7 @@ export default ({list, id}, getFieldDecorator, setValue) => {
               rules: item.rules,
             }) (
               <Input
-                style={{width: '100%'}}
+                style={{width: '200px'}}
                 prefix={
                   <Icon
                     type={item.iconType}

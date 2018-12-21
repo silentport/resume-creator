@@ -10,6 +10,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+
           <style jxs="true">
             {`
             body {

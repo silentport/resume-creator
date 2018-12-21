@@ -17,6 +17,7 @@
     "antd": "^3.11.0",
     "babel-plugin-import": "^1.11.0",
     "es6-promise": "^4.2.5",
+    "formidable": "^1.2.1",
     "gm": "^1.23.1",
     "html-pdf": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",

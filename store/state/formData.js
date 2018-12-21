@@ -6,8 +6,8 @@ export default {
                 id: '1',
                 name: 'name',
                 label: '姓名',
-                value: '555',
-                placeholder: 'user',
+                value: '',
+                placeholder: '输入姓名',
                 iconType: 'user',
                 rules: [{
                     required: true,
@@ -19,7 +19,7 @@ export default {
                 name: 'age',
                 label: '年龄',
                 value: '',
-                placeholder: 'Age',
+                placeholder: '输入年龄',
                 iconType: 'smile',
                 rules: [{
                     required: true,
@@ -31,7 +31,7 @@ export default {
                 name: 'email',
                 label: '邮箱',
                 value: '',
-                placeholder: 'Email',
+                placeholder: '输入邮箱',
                 iconType: 'mail',
                 rules: [{
                     required: true,
@@ -44,7 +44,7 @@ export default {
                 name: 'phone',
                 label: '电话',
                 value: '',
-                placeholder: 'Phone',
+                placeholder: '输入电话',
                 iconType: 'phone',
                 rules: [{
                     required: true,
@@ -77,43 +77,43 @@ export default {
                 name: 'school-1',
                 label: '学校',
                 value: '',
-                placeholder: 'school',
+                placeholder: '输入学校名称',
                 // type: 'cascade',
                 iconType: 'user',
                 rules: [{
                     required: true,
                     message: 'Please input your school!',
                 }],
-                options: [{
-                    value: 'zhejiang',
-                    label: 'Zhejiang',
-                    children: [{
-                        value: 'hangzhou',
-                        label: 'Hangzhou',
-                        children: [{
-                            value: 'xihu',
-                            label: 'West Lake',
-                        }],
-                    }],
-                }, {
-                    value: 'jiangsu',
-                    label: 'Jiangsu',
-                    children: [{
-                        value: 'nanjing',
-                        label: 'Nanjing',
-                        children: [{
-                            value: 'zhonghuamen',
-                            label: 'Zhong Hua Men',
-                        }],
-                    }],
-                }]
+                // options: [{
+                //     value: 'zhejiang',
+                //     label: 'Zhejiang',
+                //     children: [{
+                //         value: 'hangzhou',
+                //         label: 'Hangzhou',
+                //         children: [{
+                //             value: 'xihu',
+                //             label: 'West Lake',
+                //         }],
+                //     }],
+                // }, {
+                //     value: 'jiangsu',
+                //     label: 'Jiangsu',
+                //     children: [{
+                //         value: 'nanjing',
+                //         label: 'Nanjing',
+                //         children: [{
+                //             value: 'zhonghuamen',
+                //             label: 'Zhong Hua Men',
+                //         }],
+                //     }],
+                // }]
 
             }, {
                 id: '2',
                 name: 'major-1',
                 label: '专业',
-                value: '65656',
-                placeholder: 'major',
+                value: '',
+                placeholder: '输入专业名称',
                 iconType: 'smile',
                 rules: [{
                     required: true,
@@ -160,7 +160,7 @@ export default {
                 name: 'intern-company-1',
                 label: '公司',
                 value: '',
-                placeholder: 'company',
+                placeholder: '输入实习单位名称',
                 iconType: 'user',
                 rules: [{
                     required: true,
@@ -173,7 +173,7 @@ export default {
                 name: 'position-1',
                 label: '职位',
                 value: '',
-                placeholder: 'position',
+                placeholder: '输入职位',
                 iconType: 'smile',
                 rules: [{
                     required: true,
@@ -202,7 +202,7 @@ export default {
                 label: '工作描述',
                 value: '',
                 type: 'area',
-                placeholder: 'description',
+                placeholder: '输入工作内容，按Enter键划分要点',
                 iconType: 'smile',
                 rules: [{
                     required: true,
@@ -225,7 +225,7 @@ export default {
                 name: 'intern-company-1',
                 label: '公司',
                 value: '',
-                placeholder: 'company',
+                placeholder: '输入工作单位名称',
                 iconType: 'user',
                 rules: [{
                     required: true,
@@ -238,7 +238,7 @@ export default {
                 name: 'position-1',
                 label: '职位',
                 value: '',
-                placeholder: 'position',
+                placeholder: '输入职位',
                 iconType: 'smile',
                 rules: [{
                     required: true,
@@ -267,7 +267,7 @@ export default {
                 label: '工作描述',
                 value: '',
                 type: 'area',
-                placeholder: '请描述工作内容',
+                placeholder: '输入工作内容，按Enter键划分要点',
                 iconType: 'smile',
                 rules: [{
                     required: true,
