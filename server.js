@@ -23,7 +23,7 @@ app.prepare().then(() => {
         const {
             pathname
         } = parsedUrl
-        console.log("请求路径:", req.pathname)
+
         if (req.method === 'POST' && pathname === '/resume_creator/preview') {
             let buffer = [];
             req.on('data', chunk => {
@@ -64,6 +64,7 @@ app.prepare().then(() => {
             })
 
         } else {
+            console.log("请求路径:", pathname);
             handle(req, res, parsedUrl)
         }
     }).listen(config.port, err => {
