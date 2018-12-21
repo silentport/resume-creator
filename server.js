@@ -23,6 +23,7 @@ app.prepare().then(() => {
         const {
             pathname
         } = parsedUrl
+        console.log(req.pathname)
         if (req.method === 'POST' && pathname === '/resume_creator/preview') {
             let buffer = [];
             req.on('data', chunk => {
