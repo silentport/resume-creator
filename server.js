@@ -11,7 +11,7 @@ const pdf = require('html-pdf');
 const dev = process.env.NODE_ENV !== 'production'
 console.log('dev: ', dev)
 const app = next({
-    dev
+    dev: false
 })
 const handle = app.getRequestHandler()
 const config = require('./config')
@@ -44,7 +44,9 @@ app.prepare().then(() => {
                             "content-type": 'application/pdf; charset=utf-8'
                         })
                         pdf.create(data, options).toStream((err, stream) => {
-                            !err && stream.pipe(res);
+                            !err && stream.pipe(res).on('error', (err) => {
+                                console.log('写入错误');
+                            });
                         });
 
                     }

@@ -8,7 +8,7 @@
     }
 }(this, function () {
     return {
-        host: 'http://silentport.cn',
+        host: 'http://localhost:3001',
         port: 3001
     }
 }));
