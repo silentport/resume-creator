@@ -20,6 +20,7 @@
     "formidable": "^1.2.1",
     "gm": "^1.23.1",
     "html-pdf": "^2.2.0",
+    "http-proxy": "^1.17.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
     "next": "^7.0.2",
