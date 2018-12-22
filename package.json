@@ -24,6 +24,7 @@
     "lodash": "^4.17.11",
     "next": "^7.0.2",
     "next-redux-wrapper": "^2.1.0",
+    "phantomjs": "^2.1.7",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",

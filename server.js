@@ -38,7 +38,7 @@ app.prepare().then(() => {
                         data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css', '100%');
                         const options = {
                             format: 'A4',
-                            phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs"
+                            phantomPath: require('phantomjs').path
                         };
 
                         res.writeHead(200, {
