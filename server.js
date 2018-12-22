@@ -68,15 +68,15 @@ app.prepare().then(() => {
             })
 
         } else {
-            // app.renderToHTML(req, res, '/', {}).then(data => {
-            //     res.writeHead(200, {
-            //         "content-type": 'text/html; charset=utf-8'
-            //     })
-            //     res.write(Buffer.from(data))
-            //     res.end();
-            // })
+            app.renderToHTML(req, res, '/', {}).then(data => {
+                res.writeHead(200, {
+                    "content-type": 'text/html; charset=utf-8'
+                })
+                res.write(Buffer.from(data))
+                res.end();
+            })
 
-            handle(req, res, parsedUrl)
+            // handle(req, res, parsedUrl)
         }
     }).listen(config.port, err => {
         if (err) throw err
