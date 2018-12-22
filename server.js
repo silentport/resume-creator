@@ -11,7 +11,7 @@ const pdf = require('html-pdf');
 const dev = process.env.NODE_ENV !== 'production'
 console.log('dev: ', dev)
 const app = next({
-    dev: false
+    dev
 })
 const handle = app.getRequestHandler()
 const config = require('./config')
@@ -24,7 +24,7 @@ app.prepare().then(() => {
         const {
             pathname
         } = parsedUrl
-        console.log("路径：", pathname);
+        // console.log("路径：", pathname);
         if (req.method === 'POST' && pathname === '/resume_creator/preview') {
             let buffer = [];
             req.on('data', chunk => {
@@ -69,15 +69,17 @@ app.prepare().then(() => {
             })
 
         } else {
-            app.renderToHTML(req, res, '/', {}).then(data => {
-                res.writeHead(200, {
-                    "content-type": 'text/html; charset=utf-8'
+            if (dev) {
+                handle(req, res, parsedUrl)
+            } else {
+                app.renderToHTML(req, res, '/', {}).then(data => {
+                    res.writeHead(200, {
+                        "content-type": 'text/html; charset=utf-8'
+                    })
+                    res.write(Buffer.from(data))
+                    res.end();
                 })
-                res.write(Buffer.from(data))
-                res.end();
-            })
-
-            // handle(req, res, parsedUrl)
+            }
         }
     }).listen(config.port, err => {
         if (err) throw err

@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
   Form,
   Icon,
@@ -9,20 +9,20 @@ import {
   Cascader,
   DatePicker,
 } from 'antd';
-import { getType } from '../../utils';
+import {getType} from '../../utils';
 import './form.css';
 import renderFields from './renderFields';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const InputGroup = Input.Group;
-const { RangePicker } = DatePicker;
+const {RangePicker} = DatePicker;
 
 const formItemLayout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 8 },
+  labelCol: {span: 4},
+  wrapperCol: {span: 8},
 };
 const buttonItemLayout = {
-  wrapperCol: { span: 14, offset: 4 },
+  wrapperCol: {span: 14, offset: 4},
 };
 class NormalForm extends React.PureComponent {
   handleSubmit = e => {
@@ -39,7 +39,7 @@ class NormalForm extends React.PureComponent {
       <>
         {data.map(item => {
           return (
-            <fieldset key={item.id} style={{ position: 'relative' }}>
+            <fieldset key={item.id} style={{position: 'relative'}}>
               {item.allowDelete && (
                 <Icon
                   className="dynamic-delete-button"
@@ -58,7 +58,8 @@ class NormalForm extends React.PureComponent {
           <Button
             type="dashed"
             onClick={this.props.add}
-            style={{ width: '400px', background: '#eee' }}>
+            style={{maxWidth: '400px', background: '#eee'}}
+          >
             <Icon type="plus" /> 新增一项
           </Button>
         </FormItem>
@@ -79,7 +80,7 @@ class NormalForm extends React.PureComponent {
     const {
       setValue,
       data,
-      form: { getFieldDecorator, getFieldValue },
+      form: {getFieldDecorator, getFieldValue},
     } = this.props;
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -91,7 +92,7 @@ class NormalForm extends React.PureComponent {
   }
 }
 const options = {
-  mapPropsToFields: ({ data }) => {
+  mapPropsToFields: ({data}) => {
     const res = {};
     if (getType(data) === 'object') {
       data.list &&

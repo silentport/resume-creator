@@ -74,7 +74,7 @@ export default ({list, id}, getFieldDecorator, setValue) => {
             {getFieldDecorator (item.name, {
               rules: item.rules,
             }) (
-              <Select style={{width: '400px'}}>
+              <Select style={{maxWidth: '400px'}}>
                 <Option value="junior">大专</Option>
                 <Option value="bachelor">本科</Option>
                 <Option value="master">硕士</Option>
@@ -112,7 +112,7 @@ export default ({list, id}, getFieldDecorator, setValue) => {
               <RangePicker
                 placeholder={['开始日期', '结束日期']}
                 format="YYYY-MM"
-                style={{width: '400px'}}
+                style={{maxWidth: '400px'}}
               />
             )}
           </FormItem>
@@ -138,7 +138,7 @@ export default ({list, id}, getFieldDecorator, setValue) => {
               rules: item.rules,
             }) (
               <Input
-                style={{width: '200px'}}
+                style={{width: '60%', minWidth: '100px'}}
                 prefix={
                   <Icon
                     type={item.iconType}
