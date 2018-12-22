@@ -11,7 +11,7 @@ const pdf = require('html-pdf');
 const dev = process.env.NODE_ENV !== 'production'
 console.log('dev: ', dev)
 const app = next({
-    dev: true
+    dev: false
 })
 const handle = app.getRequestHandler()
 const config = require('./config')
