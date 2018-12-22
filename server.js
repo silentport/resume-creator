@@ -37,7 +37,8 @@ app.prepare().then(() => {
                     if (buffer.type === 'pdf') {
                         data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css', '100%');
                         const options = {
-                            format: 'A4'
+                            format: 'A4',
+                            phantomPath: "./node_modules/phantomjs/bin/phantomjs"
                         };
 
                         res.writeHead(200, {
