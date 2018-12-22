@@ -52,6 +52,7 @@ app.prepare().then(() => {
 
                     }
                     if (buffer.type === 'html') {
+
                         data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css', '80%');
                         data = data.replace(/\<img src="data:image\/(\w+);base64,([\s\S]+?)"/, (all, type, base64) => {
                             const _base64 = Buffer.from(base64, 'base64').toString('base64')

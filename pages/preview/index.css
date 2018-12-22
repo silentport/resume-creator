@@ -17,7 +17,8 @@
     line-height: 26px;
     display: block;
     padding: 0px 5px;
-    box-sizing: border-box;
+    font-family: Arial;
+    letter-spacing: 2px;
     position: relative;
     width: 74px;
     z-index: 1;
