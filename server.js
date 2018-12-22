@@ -11,7 +11,7 @@ const pdf = require('html-pdf');
 const dev = process.env.NODE_ENV !== 'production'
 console.log('dev: ', dev)
 const app = next({
-    dev: false
+    dev: true
 })
 const handle = app.getRequestHandler()
 const config = require('./config')
@@ -38,7 +38,7 @@ app.prepare().then(() => {
                         data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css', '100%');
                         const options = {
                             format: 'A4',
-                            phantomPath: "./node_modules/phantomjs/bin/phantomjs"
+                            phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs"
                         };
 
                         res.writeHead(200, {
@@ -68,15 +68,15 @@ app.prepare().then(() => {
             })
 
         } else {
-            app.renderToHTML(req, res, '/', {}).then(data => {
-                res.writeHead(200, {
-                    "content-type": 'text/html; charset=utf-8'
-                })
-                res.write(Buffer.from(data))
-                res.end();
-            })
+            // app.renderToHTML(req, res, '/', {}).then(data => {
+            //     res.writeHead(200, {
+            //         "content-type": 'text/html; charset=utf-8'
+            //     })
+            //     res.write(Buffer.from(data))
+            //     res.end();
+            // })
 
-            // handle(req, res, parsedUrl)
+            handle(req, res, parsedUrl)
         }
     }).listen(config.port, err => {
         if (err) throw err
