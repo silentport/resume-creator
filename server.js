@@ -5,7 +5,6 @@ const {
     parse
 } = require('url')
 const next = require('next')
-const fs = require('fs')
 const staticHtmlFormatter = require('./staticHtmlFormatter');
 const pdf = require('html-pdf');
 const dev = process.env.NODE_ENV !== 'production'
@@ -24,7 +23,6 @@ app.prepare().then(() => {
         const {
             pathname
         } = parsedUrl
-        console.log("路径：", pathname);
         if (req.method === 'POST' && pathname === '/resume_creator/preview') {
             let buffer = [];
             req.on('data', chunk => {
@@ -37,18 +35,22 @@ app.prepare().then(() => {
                     if (buffer.type === 'pdf') {
                         data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css', '100%');
                         const options = {
-                            format: 'A4'
+                            format: 'A4',
+                            phantomPath: require('phantomjs').path
                         };
 
                         res.writeHead(200, {
                             "content-type": 'application/pdf; charset=utf-8'
                         })
                         pdf.create(data, options).toStream((err, stream) => {
-                            !err && stream.pipe(res);
+                            !err && stream.pipe(res).on('error', (err) => {
+                                console.log('写入错误');
+                            });
                         });
 
                     }
                     if (buffer.type === 'html') {
+
                         data = staticHtmlFormatter(data, './_next\/static\/css\/styles.chunk.css', '80%');
                         data = data.replace(/\<img src="data:image\/(\w+);base64,([\s\S]+?)"/, (all, type, base64) => {
                             const _base64 = Buffer.from(base64, 'base64').toString('base64')
@@ -65,15 +67,17 @@ app.prepare().then(() => {
             })
 
         } else {
-            app.renderToHTML(req, res, '/', {}).then(data => {
-                res.writeHead(200, {
-                    "content-type": 'text/html; charset=utf-8'
+            if (dev) {
+                handle(req, res, parsedUrl)
+            } else {
+                app.renderToHTML(req, res, '/', {}).then(data => {
+                    res.writeHead(200, {
+                        "content-type": 'text/html; charset=utf-8'
+                    })
+                    res.write(Buffer.from(data))
+                    res.end();
                 })
-                res.write(Buffer.from(data))
-                res.end();
-            })
-
-            // handle(req, res, parsedUrl)
+            }
         }
     }).listen(config.port, err => {
         if (err) throw err

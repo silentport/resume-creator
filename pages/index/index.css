@@ -11,8 +11,9 @@
 
 .slider {
   width: 15%;
-  height: 100vw;
+  height: 100vh;
   padding: 30px;
+  min-width: 140px;
   box-sizing: border-box;
   background: rgb(70, 60, 60);
 }
@@ -44,6 +45,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   padding: 30px;
+  min-width: 300px;
 }
 
 .form::-webkit-scrollbar {
