@@ -9,7 +9,7 @@
 }(this, function () {
     return {
         // host: 'http://localhost:3001',
-        host: 'http://silentport.cn',
+        host: 'https://silentport.cn',
         port: 3001
     }
 }));
